@@ -54,6 +54,21 @@ def publish(input_ipynb_path,
             output_ipynb=False,
             exclude_input=True,
             exclude_prompts=True):
+  """
+  "publish"es a notebook, by executing it with optional papermill `parameters`,
+  converting result to html, 
+
+  @input input_ipynb_path: path to input ipynb notebook to execute
+  @input output_dir: string, optional: path to save output, defaults current directory
+  @input output_name: string, optional: name for output ipynb and html files, defaults input notebook name + parameters
+  @input parameters: dict, optional: values to override notebook values in cell tagged `parameters` (papermill)
+  @input output_html: bool, optional, defaults True: option to create output html
+  @input output_ipynb: bool, optional, default False: option to keep conveted ipynb
+  @input exclude_input: bool, optional, default True: option to exclude ipython input (code) cells from html output
+  @input exclude_prompts: bool, optional, default True: option to exclude prompts (In[ 1 ]) from html output
+  
+  @returns: dict of {name, output_ipynb_path, output_html_path}
+  """
   if output_dir == None:
     output_dir = '.'# os path to current directory?
   if output_name == None:
@@ -76,5 +91,9 @@ def publish(input_ipynb_path,
     f.write(html)
     f.close()
   if not output_ipynb:
-    print(f'removing {output_ipynb_path}')
     os.remove(output_ipynb_path)
+  return dict(
+    name=output_name,
+    output_ipynb_path=output_ipynb_path if output_ipynb else None,
+    output_html_path=output_html_path
+  )
