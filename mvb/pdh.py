@@ -8,6 +8,7 @@ pandas helper functions
 import pandas as pd
 import numpy as np
 import subprocess
+import mvb.general as g
 
 def set_pandas_options(show_all_rows=True,
                        show_all_cols=True,
@@ -70,7 +71,7 @@ def explode_kv_str_col(df,kv_str_col,kv_delim='=',item_delim='&'):
         
     @returns: new panadas dataframe with values transformed
     """
-    df[kv_str_col] = df[kv_str_col].apply(lambda s: str_to_dict(s,kv_delim,item_delim))
+    df[kv_str_col] = df[kv_str_col].apply(lambda s: g.str_to_dict(s,kv_delim,item_delim))
     return explode_dict_col(df,kv_str_col)
 
 def add_section_header(df,section_header):
