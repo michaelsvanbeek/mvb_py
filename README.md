@@ -16,6 +16,8 @@ Github: [https://github.com/michaelsvanbeek/mvb_py](https://github.com/michaelsv
 
 ### Dev Notes
 
+Configure `.pypirc` in HOME directory.  Set username and password.
+
 Compute build and dist directories
 ```
 python setup.py build sdist

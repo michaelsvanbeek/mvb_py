@@ -8,11 +8,11 @@ pandas helper functions
 import pandas as pd
 import numpy as np
 import subprocess
-import mvb.general as g
+import mvb.g as g
 
-def set_pandas_options(show_all_rows=True,
-                       show_all_cols=True,
-                       show_full_col=True):
+def set_options(show_all_rows=True,
+                show_all_cols=True,
+                show_full_col=True):
     if show_all_rows:
         # do not truncate table rows
         pd.set_option("display.max_rows", None)
