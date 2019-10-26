@@ -1,3 +1,12 @@
+import plotly
+import plotly.plotly as py
+import plotly.figure_factory as ff
+from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+import plotly.graph_objs as go
+#from plotly import tools
+
+init_notebook_mode(connected=True)
+
 def top_n_pie_chart(df,val_col,n=50,title=None):
     """
     Inserts an inline plot of a Pie chart for the top N results from
