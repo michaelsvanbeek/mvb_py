@@ -4,7 +4,7 @@ import papermill as pm
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 from nbconvert import HTMLExporter
-from IPython.core.display import display, HTML
+from IPython.core.display import display, HTML, Markdown
 # internal modules
 import mvb.pdh as pdh
 import mvb.g as g
@@ -97,3 +97,44 @@ def publish(input_ipynb_path,
     output_ipynb_path=output_ipynb_path if output_ipynb else None,
     output_html_path=output_html_path
   )
+
+def index_item(item):
+    """
+    @item: tuple (id, name)
+    """
+    return f'<li><a href="#{item[0]}">{item[1]}</a></li>'
+
+def index(items):
+    """
+    @input items: list of tuples: (id, name)
+    """
+    css = """
+    <style>
+    #index{
+        position: fixed;
+        display:block;
+        top: 120px;
+        left: 10px;
+        z-index: 1000000;
+        background-color: white;
+        border: 1px solid black;
+        padding: 1em;
+    }
+    </style>"""
+    items_html = '\n'.join(list(map(index_item,items)))
+    
+    display(HTML(f"""
+    {css}
+    <div id="index">
+        <h2>Index</h1>
+        <ul>
+            {items_html}
+        </ul>
+    </div>
+    """))
+
+def heading(item):
+    """
+    @item: tuple (id, name)
+    """
+    return display(HTML(f'<h1 id={item[0]}>{item[1]}</h1>'))
