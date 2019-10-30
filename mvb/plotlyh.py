@@ -1,3 +1,4 @@
+import pandas as pd
 import plotly
 import plotly.plotly as py
 import plotly.figure_factory as ff
